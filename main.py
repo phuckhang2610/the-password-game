@@ -56,10 +56,7 @@ def check_rules(event = None):
             else:
                 label.config(text = f'✖ {rule}', fg = 'red', bg = '#f8d7da')
                 frame.config(bg = 'red')
-
-    passed = sum(rules.values())
-    progress['value'] = passed
-
+                
     if all(rules.values()) and not game_over:
         game_over = True
         entry_password.config(state = 'disabled')
@@ -118,7 +115,6 @@ def start_game(event = None):
 
     entry_password.config(state = 'normal')
     entry_password.delete(0, END)
-    progress['value'] = 0
         
     start_timer()
     
@@ -144,9 +140,6 @@ def create_rule_widgets():
         label.pack(fill = 'x')
         rule_frames[rule] = frame
         rule_labels[rule] = label
-        
-    progress = Progressbar(game_frame, length = 400, maximum = len(rules_text))
-    progress.pack(pady = 20)
 
 root = Tk()
 root.title('the password game')
@@ -205,16 +198,6 @@ frame_rules.pack()
 
 rule_labels = {}
 rule_frames = {}
-# for rule in rules_text:
-#     frame = Frame(frame_rules, bg = 'red', padx = 1, pady = 1)
-#     frame.pack(pady = 3, fill = 'x')
-#     label = Label(frame, text = f'✖ {rule}', fg = 'red', bg = '#f8d7da', font = ('Arial', 10), width = 40, anchor = 'w', padx = 10, pady = 3)
-#     label.pack(fill = 'x')
-#     rule_frames[rule] = frame
-#     rule_labels[rule] = label
-
-# progress = Progressbar(game_frame, length = 400, maximum = len(rules_text))
-# progress.pack(pady = 20)
 
 buttons_frame = Frame(game_frame, bg = '#dcf7e0')
 buttons_frame.pack(side = 'bottom', pady = 20)
